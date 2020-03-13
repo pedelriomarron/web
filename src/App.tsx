@@ -33,7 +33,7 @@ function App() {
                   <Route path="/contact" component={Contact} />
                   <Route path="/resume" component={Resume} />
                   <Route path="/about" component={About} />
-                  <Route render={() => (<Redirect to="/homepage" />)} />
+                  {/* <Route render={() => (<Redirect to="/homepage" />)} /> */}
 
 
                 </div>

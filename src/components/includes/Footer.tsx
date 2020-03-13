@@ -6,7 +6,7 @@ export class Footer extends React.Component<{}, {}> {
 
     addRRSS = () => {
         const rrss = [
-            { href: "https://github.com/pedelriomarron", icon: "fab fa-github", class: "hover:text-gray-900" },
+            { href: "https://github.com/pedelriomarron", icon: "fab fa-github", class: "hover:text-gray-100" },
             { href: "https://www.linkedin.com/in/pedelriomarron/", icon: "fab fa-linkedin", class: " hover:text-blue-500" },
             { href: "https://www.npmjs.com/~pedelriomarron", icon: "fab fa-npm", class: "hover:text-red-800" }
 
