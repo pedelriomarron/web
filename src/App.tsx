@@ -4,10 +4,11 @@ import { About } from './components/pages/About';
 import { Resume } from './components/pages/Resume';
 
 import { Sidebar } from './components/includes/Sidebar';
-import { Route, Router, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { Contact } from './components/pages/Contact';
 import { Skills } from './components/pages/Skills';
 import { Portfolio } from './components/pages/portfolio/Portfolio';
+import { HashRouter as Router } from 'react-router-dom';
 
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
                   <Route path="/homepage" component={Homepage} />
 
                    */}
-                  <Route path="/portfolio" component={Portfolio} />
+                  <Route exact path="/" component={Portfolio} />
 
+                  <Route path="/portfolio" component={Portfolio} />
                   <Route path="/skills" component={Skills} />
                   <Route path="/contact" component={Contact} />
                   <Route path="/resume" component={Resume} />
