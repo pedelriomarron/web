@@ -40,7 +40,7 @@ export const Portfolio = () => {
 
     return (
         <React.Fragment>
-            <Header title="Portfolio" subtitle="dfj dfj dfh fhjdh jdfh " classColor="bg-green-200"></Header>
+            <Header title="Portfolio" subtitle="Show my repos " classColor="bg-green-200"></Header>
             <div className="p-3">
                 {
                     isLoading
