@@ -1,0 +1,10 @@
+  
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+.spanWhite> span{
+     color: white!important;
+}
+
