@@ -4,11 +4,12 @@ import { About } from './components/pages/About';
 import { Resume } from './components/pages/Resume';
 
 import { Sidebar } from './components/includes/Sidebar';
-import { Route, Redirect } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { Contact } from './components/pages/Contact';
 import { Skills } from './components/pages/Skills';
 import { Portfolio } from './components/pages/portfolio/Portfolio';
-import { HashRouter as Router } from 'react-router-dom';
+import Homepage from './components/pages/Homepage';
+import { NoMatchPage } from './components/pages/NoMatchPage';
 
 
 function App() {
@@ -24,17 +25,23 @@ function App() {
               <div className="w-full md:w-full xl:w-full p-0">
                 <div>
                   {/*
-                  <Route exact path="/" component={Homepage} />
+                 
                   <Route path="/homepage" component={Homepage} />
 
                    */}
-                  <Route exact path="/" component={Portfolio} />
+                  <Switch>
+                    <Route exact path="/" component={Homepage} />
 
-                  <Route path="/portfolio" component={Portfolio} />
-                  <Route path="/skills" component={Skills} />
-                  <Route path="/contact" component={Contact} />
-                  <Route path="/resume" component={Resume} />
-                  <Route path="/about" component={About} />
+                    <Route path="/portfolio" component={Portfolio} />
+                    <Route path="/skills" component={Skills} />
+                    <Route path="/contact" component={Contact} />
+                    <Route path="/resume" component={Resume} />
+                    <Route path="/about" component={About} />
+                    <Route component={NoMatchPage} />
+                  </Switch>
+
+
+
                   {/* <Route render={() => (<Redirect to="/homepage" />)} /> */}
 
 

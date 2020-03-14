@@ -11,11 +11,6 @@ interface IState {
 
 
 export default class Loading extends React.PureComponent<IProps, IState> {
-    constructor(props: any) {
-        super(props)
-    }
-
-
 
 
 

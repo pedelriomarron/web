@@ -11,12 +11,6 @@ interface IState {
 
 
 export default class Header extends React.PureComponent<IProps, IState> {
-    constructor(props: any) {
-        super(props)
-        // this.state = {}
-
-
-    }
 
 
 

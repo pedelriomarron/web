@@ -49,17 +49,13 @@ export class Resume extends React.Component<{}, {}> {
         ]
         let dom: any = []
         dataTimeline.map((item, j) => {
-
             let ul: any = []
             let uldiv: any = []
             item.items.map((item, i) => {
-
-
-                ul.push(<li key={i + "-" + j} className="bg-blue-100 p-3 m-3 rounded timeline-item "> <div className="text-xl  pb-3">{item.title}</div> <div className="text-xs pb-1">{item.year}</div> <div className="text-sm">{item.college}</div> </li>)
-
+                return ul.push(<li key={i + "-" + j} className="bg-blue-100 p-3 m-3 rounded timeline-item "> <div className="text-xl  pb-3">{item.title}</div> <div className="text-xs pb-1">{item.year}</div> <div className="text-sm">{item.college}</div> </li>)
             })
             uldiv.push(<ul key={j + j + "-"} className="pl-10 pb-10">{ul}</ul>)
-            dom.push(<div key={j} className="p-5 lg:w-1/2 sm:w-full"> <div className="uppercase text-2xl"> <i className={"rounded-full p-3  bg-blue-400 " + item.icon} > </i> {item.name} </div>  {uldiv} </div>)
+            return dom.push(<div key={j} className="p-5 lg:w-1/2 sm:w-full"> <div className="uppercase text-2xl"> <i className={"rounded-full p-3  bg-blue-400 " + item.icon} > </i> {item.name} </div>  {uldiv} </div>)
 
 
         })
@@ -74,8 +70,8 @@ export class Resume extends React.Component<{}, {}> {
     render() {
         return (
             <React.Fragment>
-                <Header title="Resume" subtitle="dfj dfj dfh fhjdh jdfh " classColor="bg-purple-200"></Header>
-                <div id="timeline" className="md:flex md:justify-start flex-wrap  ">
+                <Header title="Resume" subtitle="I show you my student and work career." classColor="bg-purple-200"></Header>
+                <div id="timeline" className="md:flex md:justify-start flex-wrap p-10  ">
                     {this.addResume()}
                 </div>
             </React.Fragment>

@@ -13,7 +13,7 @@ export class Footer extends React.Component<{}, {}> {
         ]
         let dom: any = []
         rrss.map((item, i) => {
-            dom.push(<a key={i} target="_blank" href={item.href} className={"hover:text-gray-700 p-2 " + item.class} >  <i className={item.icon}> </i> </a>)
+            return dom.push(<a rel="noopener noreferrer" key={i} target="_blank" href={item.href} className={"hover:text-gray-700 p-2 " + item.class} >  <i className={item.icon}> </i> </a>)
         })
         return dom
     }

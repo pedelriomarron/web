@@ -23,12 +23,16 @@ export const Portfolio = () => {
 
         async function loadProducts() {
             const response: any = await getRepos({ signal });
+            console.log("response")
             setProducts(response)
             setIsLoading(false)
+            clean()
         }
         loadProducts()
-        return () => abortController.abort()
 
+        async function clean() {
+            abortController.abort()
+        }
 
 
 
@@ -40,13 +44,13 @@ export const Portfolio = () => {
 
     return (
         <React.Fragment>
-            <Header title="Portfolio" subtitle="Show my repos " classColor="bg-green-200"></Header>
-            <div className="p-3">
+            <Header title="Portfolio" subtitle="I show you some of my projects that I upload to github." classColor="bg-pink-500"></Header>
+            <div className="p-10">
                 {
                     isLoading
                         ? <Loading />
-                        : products.length < 1 ? <div className="has-text-centered">No hay Repos disponibles</div>
-                            : products.length > 0 && <div className="flex flex-wrap justify-center w-full">{products.map((product, i) => <div key={i} className=" md:w-1/3 lg:w-1/4 p-2"><Repo  {...product} /></div>)}</div>
+                        : products.length < 1 ? <div className="has-text-centered">There are no projects</div>
+                            : products.length > 0 && <div className="flex flex-wrap justify-center w-full">{products.map((product, i) => <Repo key={i} {...product}>" md:w-1/3 lg:w-1/4 p-2 "</Repo>)}</div>
                 }
 
 
