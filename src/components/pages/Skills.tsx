@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Header from '../includes/Header'
+import { Text } from '../../containers/Language'
 
 export class Skills extends React.Component<{}, {}> {
 
@@ -89,11 +90,11 @@ export class Skills extends React.Component<{}, {}> {
         return (
 
             <React.Fragment>
-                <Header title="Skills" subtitle="Here I show you some of my most outstanding skills." classColor="bg-blue-200"></Header>
+                <Header title="header_skills" subtitle="header_skills_sub" classColor="bg-blue-200"></Header>
                 <section className="">
                     <div className=" ">
                         <div className="p-5 text-center text-2xl font-bold text-gray-800 mx-2 mb-3 uppercase md:text-2xl sm:text-xl ">
-                            Languages & Technologies
+                            <Text tid="skills_title" />
                         </div>
                         <div className="flex flex-wrap mx-4 mb-6 justify-evenly text-center">
                             {this.addSkills()}

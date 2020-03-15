@@ -36,7 +36,7 @@ export class Contact extends React.Component<{}, {}> {
         return (
 
             <React.Fragment>
-                <Header title="Contact Me" subtitle="If you have any questions I invite you to contact me, I will try to answer you as soon as possible." classColor="bg-orange-300"></Header>
+                <Header title="header_contact" subtitle="header_contact_sub" classColor="bg-orange-300"></Header>
                 <div className="flex justify-center">
                     <div className="m-5 p-5">
                         <div className="flex flex-col -mx-4 md:flex-row">

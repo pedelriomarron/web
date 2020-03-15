@@ -5,11 +5,11 @@ import * as serviceWorker from './serviceWorker';
 import './css/tailwind.css'
 import './css/style.css'
 import './css/footer.css'
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 
 ReactDOM.render(
-    <BrowserRouter basename={"/web"}><App /></BrowserRouter>,
+    <Router><App /></Router>,
     document.getElementById('root') as HTMLElement
 );
 

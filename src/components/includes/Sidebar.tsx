@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
+import LanguageSelector from './LanguageSelector';
+import { Text } from '../../containers/Language'
 
 export class Sidebar extends React.Component<{}, {}> {
 
@@ -7,12 +9,12 @@ export class Sidebar extends React.Component<{}, {}> {
 
 
     const items: itemNav[] = [
-      { text: "Home", url: "/", fa_icon: "fab fa-houzz", color: "red-700" },
-      { text: "Portfolio", url: "/portfolio", fa_icon: "fas fa-briefcase", color: "pink-500" },
-      { text: "Resume", url: "/resume", fa_icon: "fab fa-black-tie", color: "purple-200" },
-      { text: "Skills", url: "/skills", fa_icon: "fas fa-cogs", color: "blue-200" },
-      { text: "AboutMe", url: "/about", fa_icon: "fas fa-address-card", color: "green-200" },
-      { text: "Contact", url: "/contact", fa_icon: "fas fa-envelope-open", color: "orange-300" },
+      { text: "sidebar_home", url: "/", fa_icon: "fab fa-houzz", color: "red-700" },
+      { text: "sidebar_portfolio", url: "/portfolio", fa_icon: "fas fa-briefcase", color: "pink-500" },
+      { text: "sidebar_resume", url: "/resume", fa_icon: "fab fa-black-tie", color: "purple-200" },
+      { text: "sidebar_skills", url: "/skills", fa_icon: "fas fa-cogs", color: "blue-200" },
+      { text: "sidebar_about", url: "/about", fa_icon: "fas fa-address-card", color: "green-200" },
+      { text: "sidebar_contact", url: "/contact", fa_icon: "fas fa-envelope-open", color: "orange-300" },
     ]
 
     let nav: any = []
@@ -23,7 +25,7 @@ export class Sidebar extends React.Component<{}, {}> {
             className={`block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-${item.color}`}>
             <i className={item.fa_icon + " pr-0 md:pr-3 "}></i>
             <span
-              className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">{item.text}</span>
+              className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block"><Text tid={item.text} /> </span>
           </NavLink>
         </li >)
     })
@@ -40,9 +42,11 @@ export class Sidebar extends React.Component<{}, {}> {
 
       <div className="bg-gray-900 shadow-lg h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
         <div
-          className="md:mt-5 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-evenly">
+          className="md:mt-5 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-evenly mr-2">
           <ul className="  list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left overflow-y-auto  ">
+
             {this.createNav()}
+            <LanguageSelector></LanguageSelector>
           </ul>
         </div>
 

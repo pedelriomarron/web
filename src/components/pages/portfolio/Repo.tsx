@@ -74,9 +74,9 @@ export class Repo extends React.PureComponent<IProps, IState> {
                 {
                     this.state.correct
                         ?
-                        <div className={this.props.children + " p-3"}>
+                        <div className={this.props.children + "w-full md:w-full lg:w-2/4 xl:w-1/3 p-2   md:flex justify-center bord box-border p-10"}>
                             <div className="rounded shadow-lg  bg-gray-200  ">
-                                <a className="cursor-pointer" rel="noopener noreferrer" target="_blank" href={this.props.homepage}><img className="w-full  bg-black cursor-pointer" src={this.state.img} alt="" /> </a>
+                                <a className="cursor-pointer" rel="noopener noreferrer" target="_blank" href={this.props.homepage}><img className="w-full   cursor-pointer object-scale-down h-32  w-full" src={this.state.img} alt="" /> </a>
                                 <div className="px-6 py-4">
                                     <div className="font-bold text-xl mb-2"> <a className="capitalize" rel="noopener noreferrer" target="_blank" href={this.props.html_url}>{correctTitle(this.props.name)}</a></div>
                                     <p className="text-gray-700 text-base">

@@ -41,3 +41,8 @@
     position:absolute !important;
 
 }
+
+.hero{
+    position:relative;
+    z-index:9999;
+}

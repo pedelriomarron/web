@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Text } from '../../containers/Language'
 
 export class Footer extends React.Component<{}, {}> {
 
@@ -40,9 +41,9 @@ export class Footer extends React.Component<{}, {}> {
                     <div className="text-center text-sm">
                         <div className="">
                             <hr className="p-1 m-1 w-1/4 mx-auto" />
-                            Copyright © <span id="footer_year"> {this.year}</span> | All Rights Reserved
-                     </div>
-                        <div className=""> <span id="autor"></span></div>
+                            Copyright © <span id="footer_year"> {this.year}</span> | <Text tid="footer_rights" />
+                        </div>
+                        <div className=""> <span id="autor">Dev. with <i className="fas fa-heart text-red-500"></i> by Pedro Manuel del Río Marrón</span></div>
                         <div><span id="version"></span></div>
                     </div>
                 </footer>
