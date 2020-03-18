@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Footer } from './components/includes/Footer';
 import { About } from './components/pages/About';
 import { Resume } from './components/pages/Resume';
@@ -11,13 +11,15 @@ import { Portfolio } from './components/pages/portfolio/Portfolio';
 import Homepage from './components/pages/Homepage';
 import { NoMatchPage } from './components/pages/NoMatchPage';
 import { LanguageProvider } from './containers/Language';
-
-
+import ReactGA from 'react-ga';
 
 
 export default function App() {
 
-
+  useEffect(() => {
+    ReactGA.initialize('UA-161009586-1');
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
 
 
 

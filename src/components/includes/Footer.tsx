@@ -44,7 +44,7 @@ export class Footer extends React.Component<{}, {}> {
                             Copyright © <span id="footer_year"> {this.year}</span> | <Text tid="footer_rights" />
                         </div>
                         <div className=""> <span id="autor">Dev. with <i className="fas fa-heart text-red-500"></i> by Pedro Manuel del Río Marrón</span></div>
-                        <div><span id="version"></span></div>
+                        <div><span id="version">v. 1.0.0</span></div>
                     </div>
                 </footer>
             </div>
