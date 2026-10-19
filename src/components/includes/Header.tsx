@@ -1,38 +1,34 @@
-import * as React from 'react';
-import { Text } from '../../containers/Language'
+import type { LucideIcon } from 'lucide-react';
+import { Text } from '../../containers/Language';
+import type { TextId } from '../../languages';
+import { navItems } from '../../nav';
 
 interface IProps {
-    title: string
-    subtitle: string
-    classColor: string
+    title: TextId
+    subtitle: TextId
+    url: string
 }
 
-interface IState {
-}
+// Each section keeps its own color band, like in 2020
+export default function Header({ title, subtitle, url }: IProps) {
+    const { color, icon: Icon } = navItems.find(item => item.url === url) as { color: string, icon: LucideIcon };
 
-
-export default class Header extends React.PureComponent<IProps, IState> {
-
-
-
-
-
-    render() {
-
-
-        return (
-            <div className={this.props.classColor + "  p-2 shadow text-xl text-white  mb-10 "}>
-                <section className="font-sans container m-auto flex flex-col py-8 max-w-xl text-center px-6">
-                    <header className="">
-                        <div className="text-3xl font-bold text-gray-800 mx-2 mb-3 uppercase md:text-5xl sm:text-2xl ">
-                            <Text tid={this.props.title} />
-                        </div>
-                        <p className="text-lg mb-3 text-gray-700 mx-2">
-                            <Text tid={this.props.subtitle} />
-                        </p>
-                    </header>
-                </section>
+    return (
+        <header className="relative mb-12 overflow-hidden px-6 pt-20 pb-14 md:mb-6 md:px-12 md:pt-10 md:pb-8"
+            style={{ background: `radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, ${color} 55%, transparent), transparent 60%), radial-gradient(80% 120% at 100% 100%, color-mix(in oklab, ${color} 25%, transparent), transparent 70%)` }}>
+            <Icon aria-hidden strokeWidth={1} className="pointer-events-none absolute -top-6 -right-6 size-56 opacity-15 md:size-48" style={{ color }} />
+            <div className="relative mx-auto max-w-6xl">
+                <div className="rise mb-4 md:mb-3 inline-flex items-center gap-2 rounded-full bg-(--surface)/70 px-3 py-1 font-mono text-xs ring-1 ring-(--border) backdrop-blur">
+                    <span className="size-1.5 rounded-full" style={{ background: color }} />
+                    ~{url}
+                </div>
+                <h1 className="rise text-4xl font-black tracking-tight uppercase sm:text-5xl md:text-6xl" style={{ '--i': 1 } as React.CSSProperties}>
+                    <Text tid={title} />
+                </h1>
+                <p className="rise text-muted mt-4 max-w-2xl text-base md:mt-2" style={{ '--i': 2 } as React.CSSProperties}>
+                    <Text tid={subtitle} />
+                </p>
             </div>
-        )
-    }
+        </header>
+    );
 }

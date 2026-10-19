@@ -1,110 +1,92 @@
-import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
+import { Moon, Sun } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
-import { Text } from '../../containers/Language'
+import { Text, useLanguage } from '../../containers/Language';
+import { navItems } from '../../nav';
+import { useTheme } from '../../hooks';
 
-export class Sidebar extends React.Component<{}, {}> {
+function ThemeToggle({ dark, toggle }: ReturnType<typeof useTheme>) {
+  const { t } = useLanguage();
+  return (
+    <button
+      onClick={toggle}
+      aria-label={t('theme_toggle')}
+      title={t('theme_toggle')}
+      className="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-white/5 text-white/70 ring-1 ring-white/10 transition hover:rotate-12 hover:text-white"
+    >
+      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+    </button>
+  );
+}
 
-  createNav = () => {
+export function Sidebar() {
+  const theme = useTheme();
 
+  return (
+    <>
+      {/* Desktop: the classic left rail */}
+      <aside className="sticky top-0 z-20 hidden h-dvh w-60 shrink-0 flex-col bg-ink px-4 py-6 text-white md:flex">
+        <NavLink to="/" className="group mb-10 flex items-center gap-3 px-2">
+          <span className="grid size-10 place-items-center rounded-xl bg-linear-to-br from-sky to-deep font-black tracking-tighter shadow-lg shadow-deep/40 transition group-hover:rotate-6">
+            PdR
+          </span>
+          <span className="leading-tight">
+            <span className="block text-sm font-bold">Pedro del Río</span>
+            <span className="block font-mono text-[11px] text-white/40">@pedelriomarron</span>
+          </span>
+        </NavLink>
 
-    const items: itemNav[] = [
-      { text: "sidebar_home", url: "/", fa_icon: "fab fa-houzz", color: "red-700" },
-      { text: "sidebar_portfolio", url: "/portfolio", fa_icon: "fas fa-briefcase", color: "indigo-200" },
-      { text: "sidebar_resume", url: "/resume", fa_icon: "fab fa-black-tie", color: "purple-200" },
-      { text: "sidebar_skills", url: "/skills", fa_icon: "fas fa-cogs", color: "blue-200" },
-      { text: "sidebar_about", url: "/about", fa_icon: "fas fa-address-card", color: "green-200" },
-      { text: "sidebar_contact", url: "/contact", fa_icon: "fas fa-envelope-open", color: "orange-300" },
-    ]
-
-    let nav: any = []
-    items.map((item, i) => {
-      return nav.push(
-        <li key={i} className="p-1 mr-3 flex-1 pr-2">
-          <NavLink exact activeClassName={`border-${item.color} text-${item.color} hover:text-${item.color} spanWhite `} to={item.url}
-            className={`block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-${item.color}`}>
-            <i className={item.fa_icon + " pr-0 md:pr-3 "}></i>
-            <span
-              className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block"><Text tid={item.text} /> </span>
-          </NavLink>
-        </li >)
-    })
-    return nav
-  }
-
-
-
-  render() {
-
-
-
-    return (
-
-      <div className="bg-gray-900 shadow-lg h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-        <div
-          className="md:mt-5 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-evenly mr-2">
-          <ul className="  list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left overflow-y-auto  ">
-
-            {this.createNav()}
-            <LanguageSelector></LanguageSelector>
+        <nav>
+          <ul className="flex flex-col gap-1">
+            {navItems.map(({ text, url, icon: Icon, color }) => (
+              <li key={url}>
+                <NavLink
+                  end
+                  to={url}
+                  style={{ '--c': color } as React.CSSProperties}
+                  className={({ isActive }) =>
+                    `group relative flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-all duration-300
+                    ${isActive ? 'bg-white/[0.06] text-white' : 'text-white/55 hover:bg-white/[0.03] hover:text-white'}`}
+                >
+                  {({ isActive }) => <>
+                    <Icon className="size-[18px] transition-transform duration-300 group-hover:scale-110" style={{ color: isActive ? color : undefined }} />
+                    <Text tid={text} />
+                    {/* the 2020 colored underline, now a glowing bar */}
+                    <span
+                      className={`absolute inset-x-3 -bottom-px h-0.5 origin-left rounded-full bg-(--c) shadow-[0_0_12px_var(--c)] transition-transform duration-500 ease-(--ease-out-expo) ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'}`}
+                    />
+                  </>}
+                </NavLink>
+              </li>
+            ))}
           </ul>
+        </nav>
+
+        <div className="mt-auto flex items-center justify-between gap-2 px-1">
+          <LanguageSelector />
+          <ThemeToggle {...theme} />
         </div>
+      </aside>
 
-
+      {/* Mobile: bottom bar like the original, now floating glass */}
+      <div className="fixed top-3 right-3 z-30 flex items-center gap-2 rounded-full bg-ink/80 p-1 backdrop-blur-xl md:hidden">
+        <LanguageSelector />
+        <ThemeToggle {...theme} />
       </div>
-    )
-  }
+      <nav className="fixed inset-x-3 bottom-3 z-30 rounded-2xl bg-ink/85 px-1 py-1.5 shadow-2xl shadow-black/40 ring-1 ring-white/10 backdrop-blur-xl md:hidden">
+        <ul className="flex">
+          {navItems.map(({ text, url, icon: Icon, color }) => (
+            <li key={url} className="flex-1">
+              <NavLink end to={url} className={({ isActive }) => `flex flex-col items-center gap-1 rounded-xl py-1.5 text-[10px] font-medium transition ${isActive ? 'bg-white/[0.08] text-white' : 'text-white/50'}`}>
+                {({ isActive }) => <>
+                  <Icon className="size-5" style={{ color: isActive ? color : undefined }} />
+                  <span className="max-w-full truncate px-0.5"><Text tid={text} /></span>
+                </>}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
 }
-
-
-
-interface itemNav {
-  text: string,
-  url: string,
-  fa_icon: string,
-  color: string
-}
-
-
-/*
-
-<div className="bg-gray-900 shadow-lg h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-<div
-  className="md:mt-5 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
-  <ul className="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
-    <li className="mr-3 flex-1">
-      <a href="#"
-        className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-        <i className="fas fa-tasks pr-0 md:pr-3"></i><span
-          className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Tasks</span>
-      </a>
-    </li>
-    <li className="mr-3 flex-1">
-      <a href="#"
-        className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
-        <i className="fa fa-envelope pr-0 md:pr-3"></i><span
-          className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Messages</span>
-      </a>
-    </li>
-    <li className="mr-3 flex-1">
-      <a href="#"
-        className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
-        <i className="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span
-          className="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Analytics</span>
-      </a>
-    </li>
-    <li className="mr-3 flex-1">
-      <a href="#"
-        className="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
-        <i className="fa fa-wallet pr-0 md:pr-3"></i><span
-          className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Payments</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-</div>
-
-
-*/

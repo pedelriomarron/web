@@ -1,137 +1,49 @@
-import * as React from 'react';
-import Header from '../includes/Header'
-import { Text } from '../../containers/Language'
+import Header from '../includes/Header';
+import { Text } from '../../containers/Language';
+import type { TextId } from '../../languages';
+import { trackSpotlight } from '../../hooks';
 
-export class Skills extends React.Component<{}, {}> {
+const skills: { title: string, img: string, label: TextId, items: string[], color: string }[] = [
+    { title: "JavaScript", img: "javascript.svg", label: "skills_frameworks", items: ["Angular", "React"], color: "#f7df1e" },
+    { title: "PHP", img: "php.svg", label: "skills_frameworks", items: ["Symfony", "Laravel"], color: "#8892bf" },
+    { title: "Node.js", img: "nodejs.svg", label: "skills_frameworks", items: ["Express.js"], color: "#83cd29" },
+    { title: "Database", img: "database.svg", label: "skills_systems", items: ["MySQL", "MongoDB"], color: "#f29111" },
+    { title: "Java", img: "java.svg", label: "skills_tech", items: ["JSP"], color: "#e76f00" },
+    { title: "CSS", img: "css-3.svg", label: "skills_frameworks", items: ["Bootstrap", "TailwindCSS", "Materialize"], color: "#2965f1" },
+    { title: "Linux", img: "linux-tux.svg", label: "skills_services", items: ["Apache", "Bind", "Samba", "FTP"], color: "#fcc624" },
+    { title: "Python", img: "python.svg", label: "skills_frameworks", items: ["Django"], color: "#3776ab" },
+    { title: "Windows", img: "windows.svg", label: "skills_services", items: ["IIS", "Active Directory"], color: "#00adef" },
+]
 
-    addSkills = () => {
-        const skills = [
-            {
-                title: "Javascript", img: "fab fa-js", frameworks:
-                    <div><i className="fab fa-angular"></i> Angular, <i className="fab fa-react"></i> React  </div>,
-                color: "/skills/javascript.svg"
-            },
-            {
-                title: "PHP", img: "fab fa-php", frameworks:
-                    <div><i className="fab fa-symfony"></i> Symfony, <i className="fab fa-laravel"></i> Laravel  </div>,
-                color: "/skills/php.svg"
-            },
-            {
-                title: "Node.js", img: "fab fa-node", frameworks:
-                    <div> Express.js </div>,
-                color: "/skills/nodejs.svg"
-            },
-            {
-                title: "Database", img: "fas fa-database", frameworks_text: "Management systems", frameworks:
-                    <div>MySQL, MongoDB  </div>,
-                color: "/skills/database.svg"
-            },
-            {
-                title: "Java", img: "fab fa-java", frameworks_text: "Technologies", frameworks: <div> JSP  </div>,
-                color: "/skills/java.svg"
-            },
-            {
-                title: "CSS", img: "fab fa-css3-alt", frameworks:
-                    <div><i className="fab fa-bootstrap"></i> Bootstrap, TailwindCSS , Materialize  </div>,
-                color: "/skills/css-3.svg"
-            },
-            {
-                title: "Linux", img: "fab fa-linux", frameworks_text: "Services", frameworks:
-                    <div>Apache, Bind, Samba, FTP   </div>,
-                color: "/skills/linux-tux.svg"
-            },
-
-            {
-                title: "Python", img: "fab fa-python", frameworks:
-                    <div> Django  </div>,
-                color: "/skills/python.svg"
-            },
-            {
-                title: "Windows", img: "fab fa-windows", frameworks_text: "Services", frameworks:
-                    <div>IIS, Active Directory </div>,
-                color: "/skills/windows.svg"
-            },
-
-
-
-        ]
-        let dom: any = []
-        skills.map((item, i) => {
-            return dom.push(
-                <div key={i} className=" p-4 lg:w-1/4 px-4 mb-6">
-                    {/* <i className={item.img + ` fa-4x text-${item.color}`}></i> */}
-                    <img alt="" className="object-scale-down h-12  w-full" src={process.env.PUBLIC_URL + item.color}></img>
-
-                    <h3 className="text-xl my-2 font-heading">{item.title}</h3>
-                    <div>
-                        <div className="text-gray-700 leading-relaxed">
-                            {
-                                item.frameworks_text
-                                    ? <b>{item.frameworks_text}: </b>
-                                    : <b>Frameworks: </b>
-
-                            }
-                            {item.frameworks}
-                        </div>
-                    </div>
-
-
-                </div>)
-        })
-        return dom
-    }
-
-
-
-
-    render() {
-
-
-        return (
-
-            <React.Fragment>
-                <Header title="header_skills" subtitle="header_skills_sub" classColor="bg-blue-200"></Header>
-                <section className=" mx-auto mt-10 box-border box-content w-4/5 mx-auto mt-10">
-                    <div className=" ">
-                        <div className="p-5 text-center text-2xl font-bold text-gray-800 mx-2 mb-3 uppercase md:text-2xl sm:text-xl ">
-                            <Text tid="skills_title" />
-                        </div>
-                        <div className="flex flex-wrap mx-4 mb-6 justify-evenly text-center">
-                            {this.addSkills()}
-                        </div>
-                    </div>
-
-
-                </section>
-
-            </React.Fragment>
-
-
-
-
-
-
-        )
-    }
+export function Skills() {
+    return (
+        <>
+            <Header title="header_skills" subtitle="header_skills_sub" url="/skills" />
+            <section className="mx-auto max-w-6xl px-6 md:px-12">
+                <h2 className="text-muted mb-6 md:mb-4 font-mono text-xs tracking-[0.3em] uppercase"><Text tid="skills_title" /></h2>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-3">
+                    {skills.map((item, i) => (
+                        <article key={item.title} onPointerMove={trackSpotlight}
+                            style={{ '--accent': item.color, '--i': i } as React.CSSProperties}
+                            className="spotlight surface rise group rounded-3xl p-6 md:p-5 transition-transform duration-500 ease-(--ease-spring) hover:-translate-y-1.5">
+                            <div className="flex items-center gap-4">
+                                <span className="grid size-14 md:size-12 place-items-center rounded-2xl bg-(--accent)/10 transition-transform duration-500 ease-(--ease-spring) group-hover:scale-110 group-hover:-rotate-6">
+                                    <img alt="" className="size-8 md:size-7 object-contain" src={import.meta.env.BASE_URL + 'skills/' + item.img} />
+                                </span>
+                                <div>
+                                    <h3 className="text-lg font-bold">{item.title}</h3>
+                                    <div className="text-muted text-xs font-medium tracking-wide uppercase"><Text tid={item.label} /></div>
+                                </div>
+                            </div>
+                            <ul className="mt-5 flex flex-wrap gap-1.5 md:mt-3">
+                                {item.items.map(name => (
+                                    <li key={name} className="rounded-full bg-(--border) px-3 py-1 font-mono text-xs">{name}</li>
+                                ))}
+                            </ul>
+                        </article>
+                    ))}
+                </div>
+            </section>
+        </>
+    );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

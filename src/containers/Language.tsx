@@ -1,38 +1,46 @@
-import React, { useState, createContext, useContext } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { dictionaryList, type LangId, type TextId } from '../languages';
 
-import { languageOptions, dictionaryList } from '../languages';
+const STORAGE_KEY = 'config';
 
-// create the language context with default selected language
-export const LanguageContext = createContext({
-    language: languageOptions[0],
-    dictionary: dictionaryList[languageOptions[0].id]
-});
+// Same rules as the old LangService: saved choice > browser language > English
+function initialLang(): LangId {
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
+        if (saved?.lang in dictionaryList) return saved.lang;
+    } catch { /* ignore */ }
+    const browser = navigator.language.substring(0, 2);
+    return browser in dictionaryList ? browser as LangId : 'en';
+}
 
-// it provides the language context to app
-export function LanguageProvider(props: any) {
-    const languageContext = useContext(LanguageContext);
-    const [language, setLanguage] = useState(languageContext.language);
-    const [dictionary, setDictionary] = useState(languageContext.dictionary);
+interface LanguageContextValue {
+    lang: LangId;
+    setLang: (lang: LangId) => void;
+    t: (tid: TextId) => string;
+}
 
-    const provider = {
-        language,
-        dictionary,
-        setLanguage: (selectedLanguage: any) => {
-            setLanguage(selectedLanguage);
-            setDictionary(dictionaryList[selectedLanguage.id]);
-        }
-    };
+export const LanguageContext = createContext<LanguageContextValue>(null!);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+    const [lang, setLang] = useState<LangId>(initialLang);
+
+    useEffect(() => {
+        document.documentElement.lang = lang;
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ lang })); } catch { /* ignore */ }
+    }, [lang]);
+
+    const t = (tid: TextId) => dictionaryList[lang][tid];
 
     return (
-        <LanguageContext.Provider value={provider} >
-            {props.children}
+        <LanguageContext.Provider value={{ lang, setLang, t }}>
+            {children}
         </LanguageContext.Provider>
     );
-};
+}
+
+export const useLanguage = () => useContext(LanguageContext);
 
 // get text according to id & current language
-export function Text(props: any) {
-    const languageContext = useContext(LanguageContext);
-
-    return languageContext.dictionary[props.tid];
-};
+export function Text({ tid }: { tid: TextId }) {
+    return <>{useLanguage().t(tid)}</>;
+}

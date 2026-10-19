@@ -1,43 +1,20 @@
-import * as React from 'react';
+import { NavLink } from 'react-router';
+import { RotateCcw } from 'lucide-react';
+import Constellation from '../includes/Constellation';
+import { Text } from '../../containers/Language';
 
-export const NoMatchPage = () => {
-    return (
-        <React.Fragment>
-            <section className="p-10 bg-white flex justify-center">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-12 ">
-                            <div className="col-sm-10 col-sm-offset-1  text-center">
-                                <div className="four_zero_four_bg">
-                                    <h1 className="text-center">404</h1>
-
-
-                                </div>
-
-                                <div className="contant_box_404">
-                                    <div className="container mx-auto px-4">
-
-                                        <section className="py-8 px-4 text-center">
-                                            <div className="max-w-auto md:max-w-lg mx-auto">
-                                                {/* <img className="mb-8 object-scale-down h-20  w-full" src={img} alt="" /> */}
-                                                <h2 className="text-5xl mb-2 font-heading">Page not found</h2>
-                                                <p className="mb-6 text-gray-500">The page you are looking for does not exist, or is currently under maintenance.</p>
-                                                <div> <a href={process.env.PUBLIC_URL} className="link_404">Go to Home</a></div>
-
-
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-        </React.Fragment>
-
-    );
-};
-
+// A tiny "game over" screen as the 404
+export const NoMatchPage = () => (
+    <section className="relative isolate grid min-h-[80dvh] md:min-h-[calc(100dvh-9rem)] place-items-center overflow-hidden bg-ink px-6 text-center text-white">
+        <Constellation className="-z-10 opacity-40" />
+        <div>
+            <p className="font-mono text-sm tracking-[0.4em] text-sky">GAME OVER</p>
+            <h1 className="mt-2 bg-linear-to-b from-white to-white/30 bg-clip-text text-[9rem] leading-none font-black tracking-tighter text-transparent md:text-[14rem]">404</h1>
+            <h2 className="text-2xl font-bold"><Text tid="notfound_title" /></h2>
+            <p className="mx-auto mt-2 max-w-md text-white/60"><Text tid="notfound_sub" /></p>
+            <NavLink to="/" className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-ink uppercase transition hover:-translate-y-0.5">
+                <RotateCcw className="size-4" /> <Text tid="notfound_btn" /> <span className="caret">_</span>
+            </NavLink>
+        </div>
+    </section>
+);
