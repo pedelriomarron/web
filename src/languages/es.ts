@@ -32,6 +32,7 @@ const es: Dictionary = {
     resume_present: "Presente",
     resume_older: "Experiencia anterior",
     resume_less: "Ver menos",
+    resume_before: "Antes",
 
     skills_title: "LENGUAJES Y TECNOLOGÍAS",
 

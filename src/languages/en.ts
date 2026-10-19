@@ -30,6 +30,7 @@ const en = {
     resume_present: "Present",
     resume_older: "Earlier experience",
     resume_less: "Show less",
+    resume_before: "Previously",
 
     skills_title: "LANGUAGES & TECHNOLOGIES",
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Briefcase, ChevronDown, ChevronRight, CornerDownRight, GraduationCap } from 'lucide-react';
+import { Briefcase, ChevronDown, ChevronRight, CornerDownRight, GraduationCap, TrendingUp } from 'lucide-react';
 import Header from '../includes/Header';
 import { Text, useLanguage } from '../../containers/Language';
 import { colorOf } from '../../nav';
@@ -33,18 +33,16 @@ function Timeline({ items, compact, offset = 0, continues, continued }:
                         {continued && i === 0 &&
                             <span aria-hidden className={`${lineArrow} -top-[32px] -left-2.5 hidden md:grid`} style={{ color }}><CornerDownRight className="size-3.5" /></span>}
                         <div className={`surface flex h-full flex-col rounded-2xl transition duration-300 hover:-translate-y-1 hover:shadow-lg ${compact ? 'px-4 py-2.5' : 'px-4 py-3'}`}>
-                            {!item.roles && <span className="font-mono text-[11px]" style={{ color }}>{formatPeriod(lang, item.from, item.to, t('resume_present'))}</span>}
-                            {item.roles
-                                ? <ul className="space-y-0.5">
-                                    {item.roles.map((role, r) => (
-                                        <li key={role.from} className="leading-snug">
-                                            <span className={r === 0 ? 'font-semibold' : 'text-sm font-medium'}>{role.title[lang]}</span>
-                                            <span className="block font-mono text-[10px]" style={{ color: r === 0 ? color : 'var(--muted)' }}>{formatPeriod(lang, role.from, role.to, t('resume_present'))}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                : <span className={`mt-1 leading-snug font-semibold ${compact ? 'text-sm' : ''}`}>{item.title[lang]}</span>}
+                            <span className="font-mono text-[11px]" style={{ color }}>{formatPeriod(lang, item.from, item.to, t('resume_present'))}</span>
+                            <span className={`mt-1 leading-snug font-semibold ${compact ? 'text-sm' : ''}`}>{item.roles?.[0].title[lang] ?? item.title[lang]}</span>
                             <span className={`text-muted leading-snug ${compact ? 'text-xs' : 'text-sm'}`}>{item.company}</span>
+                            {/* earlier positions in the same company (promotions) */}
+                            {item.roles?.slice(1).map(role => (
+                                <span key={role.from} className="text-muted mt-1 flex items-start gap-1 text-[11px] leading-snug">
+                                    <TrendingUp className="mt-px size-3 shrink-0" style={{ color }} />
+                                    <span>{t('resume_before')} {(role.short ?? role.title)[lang]} · <span className="whitespace-nowrap">{formatPeriod(lang, role.from, role.to, t('resume_present'))}</span></span>
+                                </span>
+                            ))}
                             {item.summary && <p className="mt-1.5 text-sm leading-snug">{item.summary[lang]}</p>}
                             {item.tags.length > 0 && !compact &&
                                 <ul className="mt-auto flex flex-wrap gap-1 pt-2.5">

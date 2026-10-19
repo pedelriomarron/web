@@ -9,7 +9,7 @@ export interface Job {
     from: string
     to?: string
     // several positions in the same company (promotions), newest first
-    roles?: { title: L10n, from: string, to?: string }[]
+    roles?: { title: L10n, short?: L10n, from: string, to?: string }[]
     summary?: L10n
     tags: string[]
 }
@@ -20,7 +20,7 @@ export const experience: Job[] = [
         company: "Invox Medical", from: "2025-10",
         roles: [
             { title: { es: "Product Engineer", en: "Product Engineer" }, from: "2026-09" },
-            { title: { es: "Desarrollador Full Stack", en: "Full Stack Developer" }, from: "2025-10", to: "2026-09" },
+            { title: { es: "Desarrollador Full Stack", en: "Full Stack Developer" }, short: { es: "Full Stack", en: "Full Stack" }, from: "2025-10", to: "2026-09" },
         ],
         summary: { es: "Arquitectura y liderazgo técnico en productos de salud.", en: "Architecture and tech leadership on healthcare products." },
         tags: ["AWS", "Serverless", "TypeScript", "Nuxt.js"],
@@ -90,6 +90,8 @@ export const skillLogos: Record<string, string> = {
 
 export function formatPeriod(lang: 'es' | 'en', from: string, to: string | undefined, present: string) {
     const fmt = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric' });
-    const date = (ym: string) => fmt.format(new Date(`${ym}-01T12:00:00`));
+    // always 3-letter months ("sept" -> "sep") so dates fit on one line
+    const date = (ym: string) => fmt.formatToParts(new Date(`${ym}-01T12:00:00`))
+        .map(part => part.type === 'month' ? part.value.replace('.', '').slice(0, 3) : part.value).join('');
     return `${date(from)} – ${to ? date(to) : present}`;
 }
