@@ -1,0 +1,13 @@
+{
+  "name": "Pedro del Río Marrón",
+  "short_name": "PdR",
+  "description": "Product Engineer y desarrollador Full Stack",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0e1320",
+  "theme_color": "#0e1320",
+  "icons": [
+    { "src": "logo192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "logo512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
