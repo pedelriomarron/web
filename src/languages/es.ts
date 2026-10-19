@@ -1,7 +1,7 @@
 import type { Dictionary } from './en';
 
 const es: Dictionary = {
-    homepage_kicker: "Pedro del Río Marrón · Desarrollador",
+    homepage_kicker: "Pedro del Río Marrón · Product Engineer",
     homepage_title: "Bienvenido a mi sitio web",
     homepage_subtitle: "Aquí puede encontrar información sobre mí y los proyectos que hago.",
     homepage_btn: "Conóceme",
@@ -21,7 +21,7 @@ const es: Dictionary = {
     header_about: "Sobre Mí",
     header_contact: "Contáctame",
 
-    header_portfolio_sub: "Te muestro algunos de mis proyectos que subo a github.",
+    header_portfolio_sub: "Mis proyectos propios destacados y, más abajo, el archivo de mis inicios.",
     header_resume_sub: "Te muestro mi carrera estudiantil y profesional.",
     header_skills_sub: "Aquí te muestro algunas de mis habilidades más destacadas.",
     header_about_sub: "Un poco de información sobre mi vida.",
@@ -30,26 +30,22 @@ const es: Dictionary = {
     resume_edu: "Educación",
     resume_exp: "Experiencia",
     resume_present: "Presente",
-    resume_web: "Desarrollo Web",
-    resume_sysadmin: "Administración de Sistemas",
-    resume_networks: "Sistemas Microinfo. y Redes",
-    resume_intern_web: "Prácticas: Desarrollador Web",
-    resume_intern_it: "Prácticas: Técnico Informático",
+    resume_older: "Experiencia anterior",
+    resume_less: "Ver menos",
 
     skills_title: "LENGUAJES Y TECNOLOGÍAS",
-    skills_frameworks: "Frameworks",
-    skills_systems: "Sistemas gestores",
-    skills_tech: "Tecnologías",
-    skills_services: "Servicios",
 
-    portfolio_empty: "No hay proyectos",
-    portfolio_error: "GitHub no responde ahora mismo. Inténtalo en un rato.",
     portfolio_demo: "Demo",
+    portfolio_visit: "Visitar",
+    portfolio_play: "Jugar",
+    portfolio_new: "Nuevo",
+    portfolio_drag: "Arrastra para comparar",
+    portfolio_archive: "Archivo: mis inicios",
+    portfolio_archive_sub: "Ejercicios, cursos y experimentos de cuando empezaba (2019–2024).",
+    portfolio_less: "Ocultar archivo",
     portfolio_code: "Código",
 
     about_extract: "Desde pequeño me apasionan las nuevas tecnologías, siempre las he usado para facilitar el trabajo y obtener el mejor resultado. Me considero una persona autodidacta y con una gran capacidad de adaptación.",
-    about_available: "Actualmente Disponible",
-    about_not_available: "Actualmente no Disponible",
     about_download: "Descargar CV",
 
     contact_social: "Redes",

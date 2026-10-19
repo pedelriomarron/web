@@ -1,5 +1,5 @@
 const en = {
-    homepage_kicker: "Pedro del Río Marrón · Developer",
+    homepage_kicker: "Pedro del Río Marrón · Product Engineer",
     homepage_title: "Welcome to my website",
     homepage_subtitle: "Here you can find information about the projects I do and what I do.",
     homepage_btn: "Know Me",
@@ -19,7 +19,7 @@ const en = {
     header_about: "About Me",
     header_contact: "Contact Me",
 
-    header_portfolio_sub: "I show you some of my projects that I upload to github.",
+    header_portfolio_sub: "My featured side projects and, further down, an archive of my early days.",
     header_resume_sub: "I show you my student and work career.",
     header_skills_sub: "Here I show you some of my most outstanding skills.",
     header_about_sub: "A little information about my life.",
@@ -28,27 +28,23 @@ const en = {
     resume_edu: "Education",
     resume_exp: "Experience",
     resume_present: "Present",
-    resume_web: "Web Development",
-    resume_sysadmin: "Systems Administration",
-    resume_networks: "Microcomputer Systems & Networks",
-    resume_intern_web: "Internship: Web Developer",
-    resume_intern_it: "Internship: IT Technician",
+    resume_older: "Earlier experience",
+    resume_less: "Show less",
 
     skills_title: "LANGUAGES & TECHNOLOGIES",
-    skills_frameworks: "Frameworks",
-    skills_systems: "Management systems",
-    skills_tech: "Technologies",
-    skills_services: "Services",
 
-    portfolio_empty: "There are no projects",
-    portfolio_error: "GitHub is not answering right now. Try again in a while.",
     portfolio_demo: "Demo",
+    portfolio_visit: "Visit",
+    portfolio_play: "Play",
+    portfolio_new: "New",
+    portfolio_drag: "Drag to compare",
+    portfolio_archive: "Archive: early days",
+    portfolio_archive_sub: "Exercises, courses and experiments from when I was starting out (2019–2024).",
+    portfolio_less: "Hide archive",
     portfolio_code: "Code",
 
     about_extract: "Since I was a child I am passionate about new technologies, I have always used them to facilitate work and get the best result. I consider myself a self-taught and decisive person with a great capacity for adaptation.",
 
-    about_available: "Currently available",
-    about_not_available: "Currently not available",
     about_download: "Download CV",
 
     contact_social: "Social",

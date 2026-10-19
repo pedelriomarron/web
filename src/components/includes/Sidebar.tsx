@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 import { Moon, Sun } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 import { Text, useLanguage } from '../../containers/Language';
@@ -21,6 +21,8 @@ function ThemeToggle({ dark, toggle }: ReturnType<typeof useTheme>) {
 
 export function Sidebar() {
   const theme = useTheme();
+  const { t } = useLanguage();
+  const { pathname } = useLocation();
 
   return (
     <>
@@ -68,19 +70,22 @@ export function Sidebar() {
         </div>
       </aside>
 
-      {/* Mobile: bottom bar like the original, now floating glass */}
+      {/* Mobile: bottom bar like the original; only the active section shows its label */}
       <div className="fixed top-3 right-3 z-30 flex items-center gap-2 rounded-full bg-ink/80 p-1 backdrop-blur-xl md:hidden">
+        <div id="cassette-slot" className="contents" />
         <LanguageSelector />
         <ThemeToggle {...theme} />
       </div>
-      <nav className="fixed inset-x-3 bottom-3 z-30 rounded-2xl bg-ink/85 px-1 py-1.5 shadow-2xl shadow-black/40 ring-1 ring-white/10 backdrop-blur-xl md:hidden">
-        <ul className="flex">
+      <nav className="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30 rounded-full bg-ink p-1.5 shadow-2xl shadow-black/40 ring-1 ring-white/10 md:hidden">
+        <ul className="flex items-center gap-0.5">
           {navItems.map(({ text, url, icon: Icon, color }) => (
-            <li key={url} className="flex-1">
-              <NavLink end to={url} className={({ isActive }) => `flex flex-col items-center gap-1 rounded-xl py-1.5 text-[10px] font-medium transition ${isActive ? 'bg-white/[0.08] text-white' : 'text-white/50'}`}>
+            <li key={url} className={pathname === url ? 'shrink-0' : 'min-w-0 flex-1'}>
+              <NavLink end to={url} aria-label={t(text)}
+                style={{ '--c': color } as React.CSSProperties}
+                className={({ isActive }) => `flex h-11 items-center justify-center gap-2 rounded-full transition-all duration-500 ease-(--ease-spring) ${isActive ? 'bg-(--c)/15 px-3.5 text-(--c)' : 'w-full text-white/55 active:scale-90'}`}>
                 {({ isActive }) => <>
-                  <Icon className="size-5" style={{ color: isActive ? color : undefined }} />
-                  <span className="max-w-full truncate px-0.5"><Text tid={text} /></span>
+                  <Icon className="size-5 shrink-0" />
+                  {isActive && <span className="text-xs font-semibold whitespace-nowrap"><Text tid={text} /></span>}
                 </>}
               </NavLink>
             </li>

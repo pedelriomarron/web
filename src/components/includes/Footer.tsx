@@ -6,7 +6,7 @@ export function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="skew-footer mt-24 bg-ink pt-28 pb-28 text-white md:mt-8 md:pt-12 md:pb-4 dark:bg-[#05070c]">
+        <footer className="skew-footer mt-24 bg-ink pt-28 pb-28 text-white md:mt-4 md:pt-11 md:pb-4 dark:bg-[#05070c]">
             <div className="md:mx-auto md:flex md:max-w-6xl md:items-center md:justify-between md:px-12">
                 <div className="flex justify-center gap-2">
                     {social.map(({ name, href, icon: Icon, color }) => (

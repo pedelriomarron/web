@@ -167,3 +167,44 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Cassette experiment */
+.cassette-reel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: reel-spin 1.6s linear infinite;
+}
+@keyframes reel-spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.cassette-bob {
+  animation: bob 0.536s ease-in-out infinite alternate;
+}
+@keyframes bob {
+  to {
+    transform: translateY(-1px) rotate(-2deg);
+  }
+}
+.cassette-note {
+  animation: note-fly 2.6s ease-out forwards;
+  text-shadow: 0 0 2px #0e1320, 0 2px 12px currentColor;
+}
+@keyframes note-fly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4) rotate(0);
+  }
+  12%,
+  70% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-60px, calc(var(--drift) * 0.5 + 6px)) scale(1) rotate(-15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-140px, calc(var(--drift) + 24px)) scale(0.8) rotate(10deg);
+  }
+}

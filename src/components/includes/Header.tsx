@@ -14,7 +14,7 @@ export default function Header({ title, subtitle, url }: IProps) {
     const { color, icon: Icon } = navItems.find(item => item.url === url) as { color: string, icon: LucideIcon };
 
     return (
-        <header className="relative mb-12 overflow-hidden px-6 pt-20 pb-14 md:mb-6 md:px-12 md:pt-10 md:pb-8"
+        <header className="relative mb-12 overflow-hidden px-6 pt-20 pb-14 md:mb-5 md:px-12 md:pt-8 md:pb-6"
             style={{ background: `radial-gradient(120% 140% at 0% 0%, color-mix(in oklab, ${color} 55%, transparent), transparent 60%), radial-gradient(80% 120% at 100% 100%, color-mix(in oklab, ${color} 25%, transparent), transparent 70%)` }}>
             <Icon aria-hidden strokeWidth={1} className="pointer-events-none absolute -top-6 -right-6 size-56 opacity-15 md:size-48" style={{ color }} />
             <div className="relative mx-auto max-w-6xl">

@@ -2,12 +2,62 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="./favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b1020" />
-    <meta name="description" content="Website for Professional Profile of Pedro del Río Marrón" />
-    <link rel="apple-touch-icon" href="./logo192.png" />
-    <title>Professional Profile | Pedro del Río Marrón</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1320" />
+    <title>Pedro del Río Marrón | Product Engineer · Desarrollador Full Stack</title>
+    <meta name="description" content="Pedro del Río Marrón, Product Engineer y desarrollador Full Stack con más de 5 años de experiencia en TypeScript, Vue/Nuxt, AWS Serverless y automatización RPA. Proyectos, currículum y contacto." />
+    <meta name="author" content="Pedro del Río Marrón" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pedelriomarron.github.io/web/" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <!-- Open Graph / redes sociales -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Pedro del Río Marrón" />
+    <meta property="og:url" content="https://pedelriomarron.github.io/web/" />
+    <meta property="og:title" content="Pedro del Río Marrón | Product Engineer · Full Stack" />
+    <meta property="og:description" content="Product Engineer y desarrollador Full Stack: TypeScript, Vue/Nuxt, AWS Serverless y RPA. Creador de Sísifo." />
+    <meta property="og:image" content="https://pedelriomarron.github.io/web/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="profile:first_name" content="Pedro" />
+    <meta property="profile:last_name" content="del Río Marrón" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pedro del Río Marrón | Product Engineer · Full Stack" />
+    <meta name="twitter:description" content="Product Engineer y desarrollador Full Stack: TypeScript, Vue/Nuxt, AWS Serverless y RPA." />
+    <meta name="twitter:image" content="https://pedelriomarron.github.io/web/og-image.jpg" />
+
+    <!-- Datos estructurados para buscadores -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Pedro del Río Marrón",
+        "alternateName": "pedelriomarron",
+        "jobTitle": "Product Engineer",
+        "description": "Product Engineer y desarrollador Full Stack con experiencia en desarrollo web y automatización de procesos (RPA).",
+        "url": "https://pedelriomarron.github.io/web/",
+        "image": "https://pedelriomarron.github.io/web/og-image.jpg",
+        "worksFor": { "@type": "Organization", "name": "Invox Medical" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Córdoba", "addressCountry": "ES" },
+        "alumniOf": [
+          { "@type": "EducationalOrganization", "name": "IES Marqués de Comares" },
+          { "@type": "EducationalOrganization", "name": "IES Trassierra" }
+        ],
+        "knowsAbout": ["TypeScript", "JavaScript", "Vue.js", "Nuxt.js", "Angular", "React", "Node.js", "Laravel", "Django", "AWS", "Serverless", "RPA", "UiPath", "Claude Code", "MCP"],
+        "knowsLanguage": ["es", "en"],
+        "sameAs": [
+          "https://github.com/pedelriomarron",
+          "https://www.linkedin.com/in/pedelriomarron/",
+          "https://www.npmjs.com/~pedelriomarron"
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -20,7 +70,16 @@
     </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <h1>Pedro del Río Marrón</h1>
+      <p>Product Engineer y desarrollador Full Stack: TypeScript, Vue/Nuxt, AWS Serverless y automatización RPA.</p>
+      <p>
+        <a href="https://github.com/pedelriomarron">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/pedelriomarron/">LinkedIn</a> ·
+        <a href="./cv/CV-Pedro-del-Rio-Marron.pdf">CV (PDF)</a> ·
+        <a href="mailto:pedelriomarron@gmail.com">pedelriomarron@gmail.com</a>
+      </p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

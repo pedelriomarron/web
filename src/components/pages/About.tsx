@@ -7,8 +7,7 @@ import { social } from '../includes/Brands';
 import { colorOf } from '../../nav';
 
 const name = "Pedro del Río Marrón"
-const available = false
-const cv = "https://drive.google.com/file/d/1TvHb0JQK4aQnimNJ8Q7P8byWJIB3DMTY/view"
+const cv = import.meta.env.BASE_URL + "cv/CV-Pedro-del-Rio-Marron.pdf"
 
 export function About() {
     const color = colorOf('/about');
@@ -42,13 +41,6 @@ export function About() {
                     <img alt="" src={sign} className="mt-6 w-32 opacity-80 dark:invert" />
 
                     <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
-                        <span className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold ring-1 ring-(--border)">
-                            <span className="relative flex size-2.5">
-                                {available && <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-500 opacity-75" />}
-                                <span className={`relative inline-flex size-2.5 rounded-full ${available ? 'bg-green-500' : 'bg-red-500'}`} />
-                            </span>
-                            <Text tid={available ? "about_available" : "about_not_available"} />
-                        </span>
                         <a href={cv} rel="noopener noreferrer" target="_blank"
                             className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 dark:bg-white dark:text-ink">
                             <Download className="size-4 transition-transform group-hover:translate-y-0.5" />

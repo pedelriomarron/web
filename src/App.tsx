@@ -9,7 +9,33 @@ import { Skills } from './components/pages/Skills';
 import { Portfolio } from './components/pages/portfolio/Portfolio';
 import Homepage from './components/pages/Homepage';
 import { NoMatchPage } from './components/pages/NoMatchPage';
-import { LanguageProvider } from './containers/Language';
+import { LanguageProvider, useLanguage } from './containers/Language';
+import type { TextId } from './languages';
+import Cassette from './components/includes/Cassette';
+
+const pageMeta: Record<string, [TextId, TextId]> = {
+  '/portfolio': ['header_portfolio', 'header_portfolio_sub'],
+  '/resume': ['header_resume', 'header_resume_sub'],
+  '/skills': ['header_skills', 'header_skills_sub'],
+  '/about': ['header_about', 'header_about_sub'],
+  '/contact': ['header_contact', 'header_contact_sub'],
+}
+
+// Title and description per page and language (Google renders the JS)
+const defaultTitle = document.title;
+const defaultDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
+
+function PageMeta({ pathname }: { pathname: string }) {
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    const meta = pageMeta[pathname];
+    document.title = meta ? `${t(meta[0])} | Pedro del Río Marrón` : defaultTitle;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta ? t(meta[1]) : defaultDescription);
+  }, [pathname, t]);
+
+  return null;
+}
 
 export default function App() {
   const { pathname } = useLocation();
@@ -18,6 +44,7 @@ export default function App() {
 
   return (
     <LanguageProvider>
+      <PageMeta pathname={pathname} />
       <div className="grain flex min-h-dvh">
         <Sidebar />
         <div className="flex min-w-0 flex-1 flex-col">
@@ -33,6 +60,7 @@ export default function App() {
             </Routes>
           </main>
           <Footer />
+          <Cassette />
         </div>
       </div>
     </LanguageProvider>
