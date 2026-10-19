@@ -32,11 +32,19 @@ function Timeline({ items, compact, offset = 0, continues, continued }:
                             <span aria-hidden className={`${lineArrow} -top-[32px] -right-2.5 hidden md:grid`} style={{ color }}><ChevronDown className="size-3.5" /></span>}
                         {continued && i === 0 &&
                             <span aria-hidden className={`${lineArrow} -top-[32px] -left-2.5 hidden md:grid`} style={{ color }}><CornerDownRight className="size-3.5" /></span>}
-                        <div className={`surface flex h-full flex-col rounded-2xl transition duration-300 hover:-translate-y-1 hover:shadow-lg ${compact ? 'px-4 py-2.5' : 'px-4 py-3.5'}`}>
-                            <span className="font-mono text-[11px]" style={{ color }}>{formatPeriod(lang, item.from, item.to, t('resume_present'))}</span>
-                            <span className={`mt-1 leading-snug font-semibold ${compact ? 'text-sm' : ''}`}>{item.title[lang]}</span>
+                        <div className={`surface flex h-full flex-col rounded-2xl transition duration-300 hover:-translate-y-1 hover:shadow-lg ${compact ? 'px-4 py-2.5' : 'px-4 py-3'}`}>
+                            {!item.roles && <span className="font-mono text-[11px]" style={{ color }}>{formatPeriod(lang, item.from, item.to, t('resume_present'))}</span>}
+                            {item.roles
+                                ? <ul className="space-y-0.5">
+                                    {item.roles.map((role, r) => (
+                                        <li key={role.from} className="leading-snug">
+                                            <span className={r === 0 ? 'font-semibold' : 'text-sm font-medium'}>{role.title[lang]}</span>
+                                            <span className="block font-mono text-[10px]" style={{ color: r === 0 ? color : 'var(--muted)' }}>{formatPeriod(lang, role.from, role.to, t('resume_present'))}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                : <span className={`mt-1 leading-snug font-semibold ${compact ? 'text-sm' : ''}`}>{item.title[lang]}</span>}
                             <span className={`text-muted leading-snug ${compact ? 'text-xs' : 'text-sm'}`}>{item.company}</span>
-                            {item.note && <span className="text-muted text-xs">{item.note[lang]}</span>}
                             {item.summary && <p className="mt-1.5 text-sm leading-snug">{item.summary[lang]}</p>}
                             {item.tags.length > 0 && !compact &&
                                 <ul className="mt-auto flex flex-wrap gap-1 pt-2.5">
@@ -53,7 +61,7 @@ function Timeline({ items, compact, offset = 0, continues, continued }:
 function SectionTitle({ icon: Icon, tid, children }: { icon: typeof Briefcase, tid: 'resume_exp' | 'resume_edu', children?: React.ReactNode }) {
     const color = colorOf('/resume');
     return (
-        <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="mb-2 flex items-center justify-between gap-3">
             <h2 className="flex items-center gap-3 text-lg font-bold uppercase">
                 <span className="grid size-9 place-items-center rounded-xl" style={{ background: `color-mix(in oklab, ${color} 22%, transparent)`, color }}>
                     <Icon className="size-4.5" />
@@ -71,7 +79,7 @@ export function Resume() {
     return (
         <>
             <Header title="header_resume" subtitle="header_resume_sub" url="/resume" />
-            <div className="mx-auto max-w-6xl space-y-8 px-6 md:space-y-5 md:px-12">
+            <div className="mx-auto max-w-6xl space-y-8 px-6 md:space-y-4 md:px-12">
                 <section>
                     <SectionTitle icon={Briefcase} tid="resume_exp">
                         <button onClick={() => setShowOlder(s => !s)}

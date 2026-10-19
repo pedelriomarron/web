@@ -8,7 +8,8 @@ export interface Job {
     company: string
     from: string
     to?: string
-    note?: L10n
+    // several positions in the same company (promotions), newest first
+    roles?: { title: L10n, from: string, to?: string }[]
     summary?: L10n
     tags: string[]
 }
@@ -16,8 +17,11 @@ export interface Job {
 export const experience: Job[] = [
     {
         title: { es: "Product Engineer", en: "Product Engineer" },
-        company: "Invox Medical", from: "2026-09",
-        note: { es: "Antes Full Stack (2025 – 2026)", en: "Previously Full Stack (2025 – 2026)" },
+        company: "Invox Medical", from: "2025-10",
+        roles: [
+            { title: { es: "Product Engineer", en: "Product Engineer" }, from: "2026-09" },
+            { title: { es: "Desarrollador Full Stack", en: "Full Stack Developer" }, from: "2025-10", to: "2026-09" },
+        ],
         summary: { es: "Arquitectura y liderazgo técnico en productos de salud.", en: "Architecture and tech leadership on healthcare products." },
         tags: ["AWS", "Serverless", "TypeScript", "Nuxt.js"],
     },
