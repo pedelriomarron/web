@@ -40,7 +40,7 @@ export const experience: Job[] = [
     {
         title: { es: "Analista RPA", en: "RPA Analyst" },
         company: "NEORIS", from: "2021-08", to: "2022-04",
-        summary: { es: "Referente técnico de RPA en España y formador.", en: "RPA technical lead in Spain and trainer." },
+        summary: { es: "Automatización de procesos RPA y formación de otros profesionales.", en: "RPA process automation and training other professionals." },
         tags: ["UiPath", "Appian", "Automation Anywhere", "Java"],
     },
     {
