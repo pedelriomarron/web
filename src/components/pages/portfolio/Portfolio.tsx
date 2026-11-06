@@ -101,21 +101,33 @@ export const Portfolio = () => {
             <Header title="header_portfolio" subtitle="header_portfolio_sub" url="/portfolio" />
             <div className="mx-auto max-w-6xl px-6 md:px-12">
                 <div className="grid gap-4 lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)]">
-                    <Card index={0} accent="#c2452d" title="Sísifo"
-                        text={{ es: "Buscador de oposiciones y empleo público en toda España. Vigila el BOE y los boletines autonómicos y provinciales, calcula los plazos y avisa por Telegram.", en: "Search engine for public-sector jobs across Spain. It watches the official gazettes, tracks every deadline and sends Telegram alerts." }}
-                        tags={["Proyecto propio", "Alertas Telegram", "ES · CA · GL · EU"]}
-                        links={[{ href: "https://sisifo.app", label: "portfolio_visit", primary: true }]}
-                        className="flex-col">
-                        <div className="relative aspect-[16/6.5] overflow-hidden bg-(--border)">
-                            <img src={img('sisifo.jpg')} alt="Sísifo" className="size-full object-cover object-top transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105" />
-                            <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-[#c2452d] px-2.5 py-1 text-[11px] font-bold text-white shadow-lg">
-                                <Sparkles className="size-3" /> <Text tid="portfolio_new" />
-                            </span>
-                        </div>
-                    </Card>
+                    <div className="grid gap-4">
+                        <Card index={0} accent="#c2452d" title="Sísifo"
+                            text={{ es: "Buscador de oposiciones y empleo público en toda España. Vigila el BOE y los boletines autonómicos y provinciales, calcula los plazos y avisa por Telegram.", en: "Search engine for public-sector jobs across Spain. It watches the official gazettes, tracks every deadline and sends Telegram alerts." }}
+                            tags={["Proyecto propio", "Alertas Telegram", "ES · CA · GL · EU"]}
+                            links={[{ href: "https://sisifo.app", label: "portfolio_visit", primary: true }]}
+                            className="flex-col">
+                            <div className="relative aspect-[16/6.5] overflow-hidden bg-(--border)">
+                                <img src={img('sisifo.jpg')} alt="Sísifo" className="size-full object-cover object-top transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105" />
+                            </div>
+                        </Card>
+
+                        <Card index={1} accent="#bdeed8" title="Andenes"
+                            text={{ es: "App móvil con las salidas y llegadas de trenes de cualquier estación de España en directo, como en los paneles de la estación: vía, retrasos, cancelaciones y paradas.", en: "Mobile app with live train departures and arrivals for any station in Spain, just like the station boards: platform, delays, cancellations and stops." }}
+                            tags={["Proyecto propio", "Móvil", "PWA", "Tiempo real"]}
+                            links={[{ href: "https://andenes.es", label: "portfolio_visit", primary: true }]}
+                            className="flex-col sm:flex-row">
+                            <div className="relative flex shrink-0 items-end justify-center bg-[#0a1a33] px-5 pt-10 sm:w-40">
+                                <img src={img('andenes.jpg')} alt="Andenes" className="w-28 rounded-t-xl ring-4 ring-ink transition-transform duration-500 ease-(--ease-spring) group-hover:-translate-y-1" />
+                                <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 rounded-full bg-[#f5b942] px-2.5 py-1 text-[11px] font-bold text-ink shadow-lg">
+                                    <Sparkles className="size-3" /> <Text tid="portfolio_new" />
+                                </span>
+                            </div>
+                        </Card>
+                    </div>
 
                     <div className="grid gap-4">
-                        <Card index={1} accent="#8b5a3c" title="Flamme Rouge"
+                        <Card index={2} accent="#8b5a3c" title="Flamme Rouge"
                             text={{ es: "App para llevar la partida del juego de mesa: etapas, clasificaciones y partidas guardadas.", en: "Companion app for the board game: stages, rankings and saved games." }}
                             tags={["Svelte", "Ionic", "PWA", "TypeScript"]}
                             links={[{ href: "https://pedelriomarron.github.io/flamme-rouge_pwa/", label: "portfolio_play", primary: true }, { href: repo('flamme-rouge_pwa'), label: "portfolio_code" }]}
@@ -124,7 +136,7 @@ export const Portfolio = () => {
                                 <img src={img('flamme-rouge.jpg')} alt="Flamme Rouge" className="w-24 rounded-t-xl ring-4 ring-ink transition-transform duration-500 ease-(--ease-spring) group-hover:-translate-y-1" />
                             </div>
                         </Card>
-                        <Card index={2} accent="#93d4ea" title={useLanguage().lang === 'es' ? "Esta web 2020 → 2026" : "This site 2020 → 2026"}
+                        <Card index={3} accent="#93d4ea" title={useLanguage().lang === 'es' ? "Esta web 2020 → 2026" : "This site 2020 → 2026"}
                             text={{ es: "Mi web de 2020, remasterizada. Arrastra para comparar.", en: "My 2020 site, remastered. Drag to compare." }}
                             tags={["React 19", "Vite", "Tailwind 4"]}
                             links={[{ href: repo('web'), label: "portfolio_code" }]}
